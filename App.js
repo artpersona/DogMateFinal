@@ -1,21 +1,60 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Login from './src/screens/Login';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import { NavigationContainer } from '@react-navigation/native';
+
+import {firebase} from './src/utils/Firebase'
+import { StateProvider } from './src/StateContext'
+import { AppLoading } from 'expo';
+
+import ScreenNavigator from './src/navigation/ScreenNavigator';
+function App (){
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  firebase.auth().onAuthStateChanged(user => {
+    if (user != null) {
+      console.log('We are authenticated now!');
+      setIsAuthenticated(true)
+    }
+  
+    else{
+      setIsAuthenticated(false)
+    }
+  }); 
+
+
+
+  return(
+    isAuthenticated ? 
+    (
+    <StateProvider>
+      <NavigationContainer>
+          <ScreenNavigator></ScreenNavigator>
+      </NavigationContainer>
+    </StateProvider>
+
+     ) 
+    
+    
+    : 
+    <StateProvider>
+      <Login></Login>
+    </StateProvider>
+    
+  )
+ 
+
 }
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  text: {
+    marginTop: 300
+  }
+})
+
+export default App
+
+
+
+

@@ -23,10 +23,24 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.impact.dogmate"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "firebase": {
+        "apiKey": "AIzaSyAJ5hsrh9StChmQ0ok3B1DByw7S84hn19A",
+        "authDomain": "dogmate-275a7.firebaseapp.com",
+        "projectId": "dogmate-275a7",
+        "storageBucket": "dogmate-275a7.appspot.com",
+        "messagingSenderId": "641783606412",
+        "appId": "1:641783606412:web:d1333a027a51c02b2cdfa9"
+      },
+      "facebook": {
+        "appId": "206032301143230"
+      }
     }
   }
 }
